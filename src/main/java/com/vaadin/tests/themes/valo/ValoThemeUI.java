@@ -38,7 +38,7 @@ import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.server.VaadinSession;
 import com.vaadin.server.WebBrowser;
-import com.vaadin.shared.ui.label.ContentMode;
+import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
@@ -67,7 +67,7 @@ import com.vaadin.v7.ui.NativeSelect;
 @PreserveOnRefresh
 public class ValoThemeUI extends UI {
 
-    @WebServlet(urlPatterns = "/Valo", name = "ValoServlet", asyncSupported = true)
+    @WebServlet(urlPatterns = "/Valo/*", name = "ValoServlet", asyncSupported = true)
     @VaadinServletConfiguration(ui = ValoThemeUI.class, productionMode = false, widgetset = "com.vaadin.v7.Vaadin7WidgetSet")
     public static class ValoServlet extends VaadinServlet {
     }
@@ -123,7 +123,6 @@ public class ValoThemeUI extends UI {
         navigator.addView("labels", Labels.class);
         navigator.addView("buttons-and-links", ButtonsAndLinks.class);
         navigator.addView("textfields", TextFields.class);
-        navigator.addView("datefields", DateFields.class);
         navigator.addView("comboboxes", ComboBoxes.class);
         navigator.addView("checkboxes", CheckBoxes.class);
         navigator.addView("sliders", Sliders.class);
@@ -137,7 +136,6 @@ public class ValoThemeUI extends UI {
         navigator.addView("colorpickers", ColorPickers.class);
         navigator.addView("selects", NativeSelects.class);
         navigator.addView("calendar", CalendarTest.class);
-        navigator.addView("forms", Forms.class);
         navigator.addView("popupviews", PopupViews.class);
         navigator.addView("dragging", Dragging.class);
 
@@ -229,7 +227,6 @@ public class ValoThemeUI extends UI {
         menuItems.put("labels", "Labels");
         menuItems.put("buttons-and-links", "Buttons & Links");
         menuItems.put("textfields", "Text Fields");
-        menuItems.put("datefields", "Date Fields");
         menuItems.put("comboboxes", "Combo Boxes");
         menuItems.put("selects", "Selects");
         menuItems.put("checkboxes", "Check Boxes & Option Groups");
@@ -245,7 +242,6 @@ public class ValoThemeUI extends UI {
         menuItems.put("accordions", "Accordions");
         menuItems.put("popupviews", "Popup Views");
         menuItems.put("calendar", "Calendar");
-        menuItems.put("forms", "Forms");
 
         HorizontalLayout top = new HorizontalLayout();
         top.setWidth("100%");
