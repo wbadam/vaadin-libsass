@@ -1,0 +1,7 @@
+@import "variables";
+@import "mytheme";
+@import "./bootstrap/scss/bootstrap";
+
+.my-demo-theme {
+   @include mytheme;
+}

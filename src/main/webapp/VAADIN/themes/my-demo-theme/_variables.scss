@@ -1,0 +1,16 @@
+$v-app-loading-text: "My Demo Theme";
+$v-background-color: #440050;
+$v-focus-color: #07a900;
+$v-focus-style: 0 0 3px 2px $v-focus-color;
+$v-bevel-depth: 20%;
+$v-gradient: v-linear 12%;
+$v-border-radius: 10px;
+$v-font-family: Roboto, sans-serif;
+$v-font-weight: 400;
+$v-font-weight--header: 400;
+$v-shadow: 0 0 0 3px rgba(0,0,0,0.32), 0 1px 0 3px rgba(255,255,255,0.14);
+$v-textfield-shadow: $v-shadow;
+$v-unit-size: 40px;
+$v-overlay-shadow: 0 0 0 3px (v-shade 8), 0 5px 10px (v-shade 4);
+
+@import "../valo/valo";

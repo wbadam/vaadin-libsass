@@ -62,12 +62,12 @@ import com.vaadin.v7.data.util.HierarchicalContainer;
 import com.vaadin.v7.data.util.IndexedContainer;
 import com.vaadin.v7.ui.NativeSelect;
 
-@Theme("tests-valo")
+@Theme("my-demo-theme")
 @Title("Valo Theme Test")
 @PreserveOnRefresh
 public class ValoThemeUI extends UI {
 
-    @WebServlet(urlPatterns = "/Valo/*", name = "ValoServlet", asyncSupported = true)
+    @WebServlet(urlPatterns = "/*", name = "ValoServlet", asyncSupported = true)
     @VaadinServletConfiguration(ui = ValoThemeUI.class, productionMode = false, widgetset = "com.vaadin.v7.Vaadin7WidgetSet")
     public static class ValoServlet extends VaadinServlet {
     }
@@ -76,8 +76,7 @@ public class ValoThemeUI extends UI {
 
     private static LinkedHashMap<String, String> themeVariants = new LinkedHashMap<>();
     static {
-        themeVariants.put("tests-valo", "Default");
-        themeVariants.put("tests-valo-dark", "Dark");
+        themeVariants.put("my-demo-theme", "my-demo-theme");
     }
     private TestIcon testIcon = new TestIcon(100);
 
