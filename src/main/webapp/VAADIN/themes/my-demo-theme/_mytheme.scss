@@ -1,0 +1,118 @@
+@mixin mytheme {
+  @include valo;
+  .v-ui > .v-customlayout.v-widget {
+    min-height: 100%;
+    overflow-y: scroll !important;
+    display: flex;
+    flex-direction: column;
+    // Bugfix, so that user can select text on the webpage.
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+  }
+}
+
+body {
+  min-height: 100%;
+}
+
+.v-app {
+  background: transparent url(nwr_circles.png);
+  background-size: cover;
+}
+
+.login-left {
+  background-color: rgba(255, 255, 255, .6);
+  border-radius: 5px 0 0 5px;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, .4);
+}
+
+.login-right {
+  background-color: #fafafa;
+  border-radius: 0 5px 5px 0;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, .4);
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+header, footer {
+  flex: none;
+}
+
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+@-webkit-keyframes animation-rotate {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@-moz-keyframes animation-rotate {
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+
+@-o-keyframes animation-rotate {
+  100% {
+    -o-transform: rotate(360deg);
+  }
+}
+
+@keyframes animation-rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.v-disabled.disable-on-click {
+  position: relative;
+  cursor: wait;
+}
+
+.v-disabled.disable-on-click:before {
+  margin: -13px 0 0 -13px;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  content: '';
+  -webkit-border-radius: 24px;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 24px;
+  -moz-background-clip: padding;
+  border-radius: 24px;
+  background-clip: padding-box;
+  border: rgba(255, 255, 255, 0.25) 2px solid;
+  border-top-color: #fff;
+  -webkit-animation: animation-rotate 750ms linear infinite;
+  -moz-animation: animation-rotate 750ms linear infinite;
+  -o-animation: animation-rotate 750ms linear infinite;
+  animation: animation-rotate 750ms linear infinite;
+}
+
+.v-disabled.disable-on-click span,
+.v-disabled.disable-on-click:hover span,
+.v-disabled.disable-on-click:active span {
+  color: transparent;
+  text-shadow: none;
+}
+
+// position navbar-dropdown 100% width
+.navbar-nav > .nav-item.dropdown.show {
+  position: static;
+}
+
+.navbar-nav > .nav-item.dropdown.show .dropdown-menu {
+  margin-top: 0;
+  border-top: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}

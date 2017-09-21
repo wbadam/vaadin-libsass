@@ -22,10 +22,10 @@ import com.vaadin.event.dd.acceptcriteria.AcceptAll;
 import com.vaadin.event.dd.acceptcriteria.AcceptCriterion;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.tests.components.TestDateField;
 import com.vaadin.ui.AbstractDateField;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.CheckBox;
+import com.vaadin.ui.DateField;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
@@ -199,7 +199,7 @@ public class Tables extends VerticalLayout implements View {
                 @Override
                 public Object generateCell(Table source, Object itemId,
                         Object columnId) {
-                    AbstractDateField tf = new TestDateField();
+                    DateField tf = new DateField();
                     tf.addStyleName(ValoTheme.TABLE_COMPACT);
                     if ((Integer) itemId % 2 == 0) {
                         tf.addStyleName(ValoTheme.DATEFIELD_BORDERLESS);

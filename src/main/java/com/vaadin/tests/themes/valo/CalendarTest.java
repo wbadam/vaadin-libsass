@@ -11,7 +11,6 @@ import com.vaadin.data.Binder;
 import com.vaadin.data.ValidationException;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.shared.ui.datefield.Resolution;
 import com.vaadin.tests.components.calendar.CalendarTestEvent;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
@@ -34,6 +33,7 @@ import com.vaadin.v7.data.fieldgroup.FieldGroup;
 import com.vaadin.v7.data.fieldgroup.FieldGroup.CommitException;
 import com.vaadin.v7.data.util.BeanItem;
 import com.vaadin.v7.shared.ui.combobox.FilteringMode;
+import com.vaadin.v7.shared.ui.datefield.Resolution;
 import com.vaadin.v7.ui.Calendar;
 import com.vaadin.v7.ui.Calendar.TimeFormat;
 import com.vaadin.v7.ui.ComboBox;
@@ -397,7 +397,6 @@ public class CalendarTest extends GridLayout implements View {
 
     private void initHideWeekEndButton() {
         hideWeekendsButton = new CheckBox("Hide weekends");
-        hideWeekendsButton.setImmediate(true);
         hideWeekendsButton.addValueChangeListener(
                 event -> setWeekendsHidden(hideWeekendsButton.getValue()));
     }
@@ -417,14 +416,12 @@ public class CalendarTest extends GridLayout implements View {
 
     private void initReadOnlyButton() {
         readOnlyButton = new CheckBox("Read-only mode");
-        readOnlyButton.setImmediate(true);
         readOnlyButton.addValueChangeListener(event -> calendarComponent
                 .setReadOnly(readOnlyButton.getValue()));
     }
 
     private void initDisabledButton() {
         disabledButton = new CheckBox("Disabled");
-        disabledButton.setImmediate(true);
         disabledButton.addValueChangeListener(event -> calendarComponent
                 .setEnabled(!disabledButton.getValue()));
     }
@@ -503,7 +500,6 @@ public class CalendarTest extends GridLayout implements View {
 
     private CheckBox createCheckBox(String caption) {
         CheckBox cb = new CheckBox(caption);
-        cb.setImmediate(true);
         return cb;
     }
 
@@ -975,7 +971,7 @@ public class CalendarTest extends GridLayout implements View {
         initFormFields(scheduleEventFieldLayout, event.getClass());
         scheduleEventFieldGroup.setBuffered(true);
         scheduleEventFieldGroup.setItemDataSource(item);
-        scheduledEventBinder.load(event);
+        scheduledEventBinder.readBean(event);
     }
 
     private void setFormDateResolution(Resolution resolution) {
@@ -1008,7 +1004,7 @@ public class CalendarTest extends GridLayout implements View {
             throws ValidationException, CommitException {
         scheduleEventFieldGroup.commit();
         BasicEvent event = getFormCalendarEvent();
-        scheduledEventBinder.save(event);
+        scheduledEventBinder.setBean(event);
         if (event.getEnd() == null) {
             event.setEnd(event.getStart());
         }
@@ -1021,7 +1017,7 @@ public class CalendarTest extends GridLayout implements View {
 
     private void discardCalendarEvent() {
         scheduleEventFieldGroup.discard();
-        scheduledEventBinder.load(getFormCalendarEvent());
+        scheduledEventBinder.readBean(getFormCalendarEvent());
         getUI().removeWindow(scheduleEventPopup);
     }
 

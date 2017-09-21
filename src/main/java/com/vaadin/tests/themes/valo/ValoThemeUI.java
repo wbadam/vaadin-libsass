@@ -38,7 +38,7 @@ import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.server.VaadinSession;
 import com.vaadin.server.WebBrowser;
-import com.vaadin.shared.ui.label.ContentMode;
+import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
@@ -62,23 +62,18 @@ import com.vaadin.v7.data.util.HierarchicalContainer;
 import com.vaadin.v7.data.util.IndexedContainer;
 import com.vaadin.v7.ui.NativeSelect;
 
-@Theme("tests-valo")
+@Theme("my-demo-theme")
 @Title("Valo Theme Test")
 @PreserveOnRefresh
 public class ValoThemeUI extends UI {
 
-    @WebServlet(urlPatterns = "/Valo", name = "ValoServlet", asyncSupported = true)
-    @VaadinServletConfiguration(ui = ValoThemeUI.class, productionMode = false, widgetset = "com.vaadin.v7.Vaadin7WidgetSet")
+    @WebServlet(urlPatterns = "/*", name = "ValoServlet", asyncSupported = true)
+    @VaadinServletConfiguration(ui = ValoThemeUI.class, productionMode = false, widgetset = "MyAppWidgetset")
     public static class ValoServlet extends VaadinServlet {
     }
 
     private boolean testMode = false;
 
-    private static LinkedHashMap<String, String> themeVariants = new LinkedHashMap<>();
-    static {
-        themeVariants.put("tests-valo", "Default");
-        themeVariants.put("tests-valo-dark", "Dark");
-    }
     private TestIcon testIcon = new TestIcon(100);
 
     ValoMenuLayout root = new ValoMenuLayout();
@@ -123,7 +118,6 @@ public class ValoThemeUI extends UI {
         navigator.addView("labels", Labels.class);
         navigator.addView("buttons-and-links", ButtonsAndLinks.class);
         navigator.addView("textfields", TextFields.class);
-        navigator.addView("datefields", DateFields.class);
         navigator.addView("comboboxes", ComboBoxes.class);
         navigator.addView("checkboxes", CheckBoxes.class);
         navigator.addView("sliders", Sliders.class);
@@ -137,7 +131,6 @@ public class ValoThemeUI extends UI {
         navigator.addView("colorpickers", ColorPickers.class);
         navigator.addView("selects", NativeSelects.class);
         navigator.addView("calendar", CalendarTest.class);
-        navigator.addView("forms", Forms.class);
         navigator.addView("popupviews", PopupViews.class);
         navigator.addView("dragging", Dragging.class);
 
@@ -229,7 +222,6 @@ public class ValoThemeUI extends UI {
         menuItems.put("labels", "Labels");
         menuItems.put("buttons-and-links", "Buttons & Links");
         menuItems.put("textfields", "Text Fields");
-        menuItems.put("datefields", "Date Fields");
         menuItems.put("comboboxes", "Combo Boxes");
         menuItems.put("selects", "Selects");
         menuItems.put("checkboxes", "Check Boxes & Option Groups");
@@ -245,14 +237,12 @@ public class ValoThemeUI extends UI {
         menuItems.put("accordions", "Accordions");
         menuItems.put("popupviews", "Popup Views");
         menuItems.put("calendar", "Calendar");
-        menuItems.put("forms", "Forms");
 
         HorizontalLayout top = new HorizontalLayout();
         top.setWidth("100%");
         top.setDefaultComponentAlignment(Alignment.MIDDLE_LEFT);
         top.addStyleName(ValoTheme.MENU_TITLE);
         menu.addComponent(top);
-        menu.addComponent(createThemeSelect());
 
         Button showMenu = new Button("Menu", new ClickListener() {
             @Override
@@ -282,7 +272,7 @@ public class ValoThemeUI extends UI {
         MenuItem settingsItem = settings.addItem(
                 sg.nextString(true) + " " + sg.nextString(true)
                         + sg.nextString(false),
-                new ThemeResource("../tests-valo/img/profile-pic-300px.jpg"),
+                new ThemeResource("./img/profile-pic-300px.jpg"),
                 null);
         settingsItem.addItem("Edit Profile", null);
         settingsItem.addItem("Preferences", null);
@@ -345,39 +335,6 @@ public class ValoThemeUI extends UI {
                 + count + "</span>");
 
         return menu;
-    }
-
-    private Component createThemeSelect() {
-        // Keep theme select the same size as in the current screenshots
-        double width = 96;
-        WebBrowser browser = VaadinSession.getCurrent().getBrowser();
-        if (browser.isChrome()) {
-            width = 95;
-        } else if (browser.isIE()) {
-            width = 95.39;
-        } else if (browser.isFirefox()) {
-            width = 98;
-        }
-        getPage().getStyles()
-                .add("#themeSelect select {width: " + width + "px;}");
-        final NativeSelect ns = new NativeSelect();
-        ns.setNullSelectionAllowed(false);
-        ns.setId("themeSelect");
-        ns.addContainerProperty("caption", String.class, "");
-        ns.setItemCaptionPropertyId("caption");
-        for (String identifier : themeVariants.keySet()) {
-            ns.addItem(identifier).getItemProperty("caption")
-                    .setValue(themeVariants.get(identifier));
-        }
-
-        ns.setValue("tests-valo");
-        ns.addValueChangeListener(new ValueChangeListener() {
-            @Override
-            public void valueChange(ValueChangeEvent event) {
-                setTheme((String) ns.getValue());
-            }
-        });
-        return ns;
     }
 
     static Handler actionHandler = new Handler() {
