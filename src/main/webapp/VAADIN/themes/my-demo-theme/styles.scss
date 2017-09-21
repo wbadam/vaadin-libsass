@@ -1,6 +1,7 @@
 @import "variables";
 @import "mytheme";
 @import "./bootstrap/scss/bootstrap";
+@import "../valo/valo";
 
 .my-demo-theme {
    @include mytheme;
