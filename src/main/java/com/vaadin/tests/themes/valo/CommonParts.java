@@ -22,6 +22,7 @@ import com.vaadin.server.AbstractErrorMessage;
 import com.vaadin.server.ErrorMessage.ErrorLevel;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.server.Page;
+import com.vaadin.server.ThemeResource;
 import com.vaadin.server.UserError;
 import com.vaadin.shared.Position;
 import com.vaadin.shared.ui.ContentMode;
@@ -51,6 +52,16 @@ import com.vaadin.ui.Window.CloseEvent;
 import com.vaadin.ui.Window.CloseListener;
 import com.vaadin.ui.themes.ValoTheme;
 
+import org.vaadin.alump.scaleimage.ScaleImage;
+import org.vaadin.alump.scaleimage.css.BackgroundClip;
+import org.vaadin.alump.scaleimage.css.BackgroundColor;
+import org.vaadin.alump.scaleimage.css.BackgroundOrigin;
+import org.vaadin.alump.scaleimage.css.BackgroundPositionX;
+import org.vaadin.alump.scaleimage.css.BackgroundPositionY;
+import org.vaadin.alump.scaleimage.css.BackgroundSize;
+
+import java.util.Arrays;
+
 public class CommonParts extends VerticalLayout implements View {
     public CommonParts() {
         setMargin(true);
@@ -58,6 +69,20 @@ public class CommonParts extends VerticalLayout implements View {
         Label h1 = new Label("Common UI Elements");
         h1.addStyleName(ValoTheme.LABEL_H1);
         addComponent(h1);
+
+        ScaleImage image = new ScaleImage("Scaled image", new ThemeResource("./img/profile-pic-300px.jpg"));
+        image.setWidth(200, Unit.PIXELS);
+        image.setHeight(200, Unit.PIXELS);
+        image.setCssValues(
+            BackgroundSize.CONTAIN,
+            BackgroundClip.PADDING_BOX,
+            BackgroundOrigin.PADDING_BOX,
+            BackgroundPositionX.CENTER,
+            BackgroundPositionY.CENTER,
+            new BackgroundColor("silver")
+        );
+
+        addComponent(image);
 
         GridLayout row = new GridLayout(2, 3);
         row.setWidth("100%");

@@ -54,20 +54,6 @@
         </dependency>
         <dependency>
             <groupId>com.vaadin</groupId>
-            <artifactId>vaadin-server</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.vaadin</groupId>
-                    <artifactId>vaadin-sass-compiler</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>com.vaadin</groupId>
-            <artifactId>vaadin-client-compiled</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.vaadin</groupId>
             <artifactId>vaadin-push</artifactId>
         </dependency>
         <dependency>
@@ -76,24 +62,28 @@
         </dependency>
         <dependency>
             <groupId>com.vaadin</groupId>
-            <artifactId>vaadin-compatibility-server</artifactId>
+            <artifactId>vaadin-compatibility-client</artifactId>
         </dependency>
         <dependency>
             <groupId>com.vaadin</groupId>
-            <artifactId>vaadin-compatibility-client-compiled</artifactId>
+            <artifactId>vaadin-compatibility-server</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.vaadin</groupId>
+                    <artifactId>vaadin-sass-compiler</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.github.warmuuh</groupId>
             <artifactId>libsass-maven-plugin</artifactId>
             <version>0.2.4-libsass_3.3.4</version>
         </dependency>
-        <!-- 
         <dependency>
-            <groupId>com.vaadin.addon</groupId>
-            <artifactId>vaadin-spreadsheet</artifactId>
-            <version>1.2.2</version>
+            <groupId>org.vaadin.alump.scaleimage</groupId>
+            <artifactId>scaleimage-addon</artifactId>
+            <version>0.5.0</version>
         </dependency>
-         -->
     </dependencies>
 
     <build>
@@ -109,7 +99,7 @@
                     <packagingExcludes>WEB-INF/classes/VAADIN/widgetsets/WEB-INF/**</packagingExcludes>
                 </configuration>
             </plugin>
-            <!-- 
+
             <plugin>
                 <groupId>com.vaadin</groupId>
                 <artifactId>vaadin-maven-plugin</artifactId>
@@ -123,7 +113,7 @@
                     </execution>
                 </executions>
             </plugin>
-            -->
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-clean-plugin</artifactId>

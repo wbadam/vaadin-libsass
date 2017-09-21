@@ -68,7 +68,7 @@ import com.vaadin.v7.ui.NativeSelect;
 public class ValoThemeUI extends UI {
 
     @WebServlet(urlPatterns = "/*", name = "ValoServlet", asyncSupported = true)
-    @VaadinServletConfiguration(ui = ValoThemeUI.class, productionMode = false, widgetset = "com.vaadin.v7.Vaadin7WidgetSet")
+    @VaadinServletConfiguration(ui = ValoThemeUI.class, productionMode = false, widgetset = "MyAppWidgetset")
     public static class ValoServlet extends VaadinServlet {
     }
 
@@ -272,7 +272,7 @@ public class ValoThemeUI extends UI {
         MenuItem settingsItem = settings.addItem(
                 sg.nextString(true) + " " + sg.nextString(true)
                         + sg.nextString(false),
-                new ThemeResource("../tests-valo/img/profile-pic-300px.jpg"),
+                new ThemeResource("./img/profile-pic-300px.jpg"),
                 null);
         settingsItem.addItem("Edit Profile", null);
         settingsItem.addItem("Preferences", null);

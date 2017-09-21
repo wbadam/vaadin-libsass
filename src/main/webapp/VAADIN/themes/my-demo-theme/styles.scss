@@ -2,7 +2,10 @@
 @import "mytheme";
 @import "./bootstrap/scss/bootstrap";
 @import "../valo/valo";
+@import "addons.scss";
+@include v-font(FontAwesome, './fontawesome/fonts/fontawesome-webfont');
 
 .my-demo-theme {
    @include mytheme;
+   @include addons;
 }
