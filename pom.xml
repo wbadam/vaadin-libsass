@@ -15,7 +15,7 @@
 
     <properties>
         <vaadin.version>8.1.4</vaadin.version>
-        <vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
+        <vaadin.plugin.version>8.1.4-update_theme_mod</vaadin.plugin.version>
         <jetty.plugin.version>9.3.9.v20160517</jetty.plugin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -84,6 +84,14 @@
             <artifactId>scaleimage-addon</artifactId>
             <version>0.5.0</version>
         </dependency>
+
+        <!--Add as compile time dependency since it includes the modified theme updater-->
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-maven-plugin</artifactId>
+            <version>${vaadin.plugin.version}</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -109,6 +117,7 @@
                         <goals>
                             <goal>update-widgetset</goal>
                             <goal>compile</goal>
+                            <goal>update-theme</goal>
                         </goals>
                     </execution>
                 </executions>
