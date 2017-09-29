@@ -228,6 +228,10 @@
                         <enabled>true</enabled>
                     </snapshots>
                 </repository>
+                <repository>
+                    <id>local-repo</id>
+                    <url>file://${basedir}/lib</url>
+                </repository>
             </repositories>
             <pluginRepositories>
                 <pluginRepository>
@@ -243,6 +247,10 @@
                     <snapshots>
                         <enabled>true</enabled>
                     </snapshots>
+                </pluginRepository>
+                <pluginRepository>
+                    <id>local-repo</id>
+                    <url>file://${basedir}/lib</url>
                 </pluginRepository>
             </pluginRepositories>
         </profile>
